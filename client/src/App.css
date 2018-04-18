@@ -1,0 +1,503 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body, 
+.raleway-text {
+  font-family: 'Raleway', sans-serif;
+}
+
+h4 {
+  font-weight: bold; 
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+/* Main Container with Upper Margin */
+
+.main-container  {
+  margin-top: 120px;
+  margin-bottom: 40px;
+}
+
+/* Home Page Background Image */
+
+#home-page-background {
+  background-image: url("images/bar.jpg");
+  background-repeat: repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 72vh;
+  display: flex;
+  align-items: center;
+  margin: 0px;
+}
+
+
+
+#searchPlacesDiv {
+  left: 60%;
+  position: relative;
+}
+
+#title-div {
+  float: right;
+  position: relative;
+}
+
+#search-field-div {
+  float: right;
+  position: relative;
+  z-index: 1;
+}
+
+#search-button-home {
+  margin-left: 20px;
+}
+
+#beer-text {
+  font-size: 40px;
+  color: white;
+  font-family: 'Lobster', cursive;
+}
+
+#find-beer-home {
+  float: left;
+  width: 33.4%;
+  height: 230px;
+  background-color: #212121;
+  text-align: center;
+  color: #FAFAFA;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+#save-places-home {
+  float: left;
+  width: 33.2%;
+  height: 230px;
+  background-color: #424242;
+  text-align: center;
+  color: #FAFAFA;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+#rate-places-home {
+  float: left;
+  width: 33.4%;
+  height: 230px;
+  background-color: #212121;
+  text-align: center;
+  color: #FAFAFA;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-family: 'Lobster Two', cursive;
+}
+
+.home-page-icon {
+  margin-top: 20px;
+}
+
+/* Footer and Nav Styling */
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  background-color: #FAFAFA;
+  text-align: center;
+  vertical-align: 30px;
+}
+
+#footerText {
+  margin: 0px
+}
+
+#logoDiv {
+  position: absolute;
+  padding: 16px 20px;
+}
+
+#logo {
+  width: 100px;
+}
+
+#navBar {
+  /* overflow: hidden; */
+  position: absolute;
+  /* Set the navbar to fixed position */
+  top: 0;
+  /* Position the navbar at the top of the page */
+  width: 100%;
+  /* Full width */
+  z-index: 100;
+  height: 75px;
+} 
+  
+
+
+
+#navBtns {
+  float: right;
+  margin-top: 35px;
+  cursor: pointer;
+}
+
+#nav-menu {
+  cursor: pointer;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+/* Search Page Styling */
+#search-page-background {
+  background-image: url("images/craft-beer.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  height: 100vh;
+  align-items: center;
+  margin: 0px;
+  overflow: auto;
+}
+
+#results-card-container {
+  margin-bottom: 30px;
+}
+
+.save-button {
+  float: right;
+}
+
+#place-title {
+  font-size: 18px;
+}
+
+/* Saved Page Styling */
+
+#card-title-div {
+  font-size: 35px;
+  font-family: 'Raleway', sans-serif;
+}
+
+#card-action-div {
+  float: right;
+  padding: 0px;
+  margin-top: 16px;
+}
+
+#saved-page-background {
+  background-image: url("images/now-brewing.jpg");
+  background-repeat: repeat-y;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  align-items: center;
+  margin: 0px;
+  overflow: auto;
+}
+
+h2 {
+  color: #FAFAFA;
+}
+
+/* Saved Places Detail Page */
+
+#card-action-div {
+  float: right;
+  padding: 0px;
+  margin-top: 16px;
+}
+
+#saved-detail-page-background {
+  background-image: url("images/neon.jpg");
+  background-repeat: repeat-y;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  align-items: center;
+  margin: 0px;
+  overflow: auto;
+}
+
+.delete-note-column {
+  margin-left: 60px;
+  margin-top: 10px;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 1450px) {
+  #searchPlacesDiv {
+    left: 57%;
+    position: relative;
+  }
+}
+
+@media only screen and (max-width: 1350px) {
+  #searchPlacesDiv {
+    left: 55%;
+    position: relative;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  #searchPlacesDiv {
+    left: 52%;
+    position: relative;
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  #searchPlacesDiv {
+    left: 51%;
+    position: relative;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  #searchPlacesDiv {
+    left: 48%;
+    position: relative;
+  }
+
+  .delete-note-column {
+    margin-left: 40px;
+  }
+}
+
+@media only screen and (max-width: 1150px) {
+  #searchPlacesDiv {
+    left: 45%;
+    position: relative;
+  }
+}
+
+@media only screen and (max-width: 1060px) {
+  #searchPlacesDiv {
+    left: 40%;
+    position: relative;
+  }
+  #logo {
+    width: 75px;
+  }
+  #home-page-background {
+    height: 80vh;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  #searchPlacesDiv {
+    left: 37%;
+    position: relative;
+  }
+
+  .delete-note-column {
+    margin-left: 5px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  #searchPlacesDiv {
+    left: 33%;
+    position: relative;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  #searchPlacesDiv {
+    left: 30%;
+    position: relative;
+  }
+}
+
+@media only screen and (max-width: 820px) {
+  #searchPlacesDiv {
+    left: 25%;
+    position: relative;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #searchPlacesDiv {
+    left: 15%;
+    position: relative;
+  }
+
+  #title-div {
+    text-align: center;
+  }
+  
+  #search-field-div {
+    float: none;
+    text-align: center;
+  }
+  
+  #find-beer-home,
+  #save-places-home {
+    float: left;
+    width: 100%;
+    height: 195px;
+    text-align: center;
+    margin-bottom: 0px;
+  }
+
+  #rate-places-home {
+    float: left;
+    width: 100%;
+    height: 195px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .notes-column {
+    padding-bottom: 0px;
+    padding-right: 0px;
+  }
+  
+  .delete-note-column {
+    margin-left: 0px;
+    margin-top: 0px;
+    padding-top: 0px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  #searchPlacesDiv {
+    left: 10%;
+    position: relative;
+  }
+  #card-action-div {
+    float: left;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #card-action-div {
+    float: left;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  #card-action-div {
+    float: left;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  #searchPlacesDiv {
+    left: 15%;
+    position: relative;
+  }
+  #card-action-div {
+    float: left;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #searchPlacesDiv {
+    left: 8%;
+    position: relative;
+  }
+  #card-action-div {
+    float: left;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #searchPlacesDiv {
+    left: 7%;
+    position: relative;
+  }
+  #card-action-div {
+    float: left;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  #searchPlacesDiv {
+    left: 5%;
+    position: relative;
+  }
+  #card-action-div {
+    float: left;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  #searchPlacesDiv {
+    left: 6%;
+    position: relative;
+  }
+  #beer-text {
+    font-size: 24px;
+  }
+  #card-action-div {
+    float: left;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  #searchPlacesDiv {
+    left: 2.5%;
+    position: relative;
+  }
+  #beer-text {
+    font-size: 24px;
+  }
+
+  #card-action-div {
+    float: left;
+  }
+  #SearchforPlaces {
+    width: 75%;
+  }
+}

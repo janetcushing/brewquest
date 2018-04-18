@@ -1,0 +1,44 @@
+{
+  "name": "brewquest",
+  "version": "1.0.0",
+  "description": "an application to search for local breweries and beers",
+  "main": "index.js",
+  "repository": "git+https://github.com/janetcushing/brewquest",
+  "scripts": {
+    "server": "node server.js",
+    "client": "node scripts/start-client.js",
+    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "build": "node scripts/build.js",
+    "seed": "node scripts/seedDB.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "installDeps": "yarn && cd client && yarn",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+  },
+  "author": "Janet Cushing, forked from beer-quest by Janet Cushing, James Roth, Lauren Wilson, Elizah Hulseman",
+  "license": "MIT",
+  "dependencies": {
+    "array-merge-by-key": "^1.0.1",
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.2",
+    "concurrently": "^3.5.1",
+    "dotenv": "^5.0.1",
+    "dotenv-webpack": "^1.5.5",
+    "express": "^4.16.2",
+    "mongojs": "^2.5.0",
+    "mongoose": "^5.0.7",
+    "nightmare": "^3.0.0",
+    "node-geocoder": "^3.22.0",
+    "node-where": "^1.1.0",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "webpack": "^4.1.1"
+  },
+  "devDependencies": {
+    "mocha": "^5.0.4",
+    "nodemon": "^1.11.0"
+  },
+  "bugs": {
+    "url": "https://github.com/janetcushing/brewquest"
+  },
+  "homepage": "https://github.com/janetcushing/brewquest#readme"
+}

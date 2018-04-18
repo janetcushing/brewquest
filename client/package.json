@@ -1,0 +1,29 @@
+{
+  "name": "brewquest",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:3001/",
+  "dependencies": {
+    "auth0-js": "^9.3.2",
+    "axios": "^0.18.0",
+    "dotenv": "^5.0.1",
+    "jwt-decode": "^2.2.0",
+    "material-ui": "^0.20.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "^1.1.1",
+    "react-tap-event-plugin": "^3.0.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "description": "a beer and brewery search application",
+  "main": "index.js",
+  "repository": "https://github.com/janetcushing/brewquest.git",
+  "author": "Janet Cushing, forked from beer-quest by Janet Cushing, Lauren Wilson, Elizah Hulseman, James Roth",
+  "license": "MIT"
+}
