@@ -7,6 +7,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
+import ShowMap from "./pages/ShowMap";
 import Search from "./pages/Search";
 import SavedPlaces from "./pages/SavedPlaces";
 import PlaceDetail from "./pages/PlaceDetail";
@@ -21,6 +22,7 @@ const App = () =>
       <div>
         <Nav />
         <Route exact path="/" component={Home} />
+        <Route exact path="/showmap" component={ShowMap} />
         <Route exact path="/search" component={Search} />
         <Route exact path="/savedplaces/:id" component={PlaceDetail} />
         <Route exact path="/savedplaces" component={SavedPlaces} onEnter={requireAuth} />

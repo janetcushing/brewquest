@@ -8,6 +8,7 @@ import { grey50, grey800 } from 'material-ui/styles/colors';
 import { login, logout, isLoggedIn, getUserAud } from '../../utils/AuthService';
 import Person from 'material-ui/svg-icons/social/person';
 import PersonOutline from 'material-ui/svg-icons/social/person-outline';
+import Place from 'material-ui/svg-icons/maps/place'
 
 
 const styles = {
@@ -32,7 +33,8 @@ class Nav extends React.Component {
         this.state = {
             open: false,
             loggedIn: false,
-            user: {}
+            user: {},
+            results: []
         };
     }
 
@@ -67,6 +69,10 @@ class Nav extends React.Component {
         }
     }
 
+    // showMap = () => {
+    //         alert("Show the map here");
+    //     }
+    
 
     handleLogout = () => {
         try {
@@ -90,7 +96,7 @@ class Nav extends React.Component {
 
         render() {
             return (
-                <div id="whattheheck">
+                <div>
                     <div id="logoDiv">
                         <a href="/"><img id="logo" src={require(`../../images/logo.png`)} style={styles.logoStyle} alt="logo" /></a>
                     </div>
@@ -98,6 +104,12 @@ class Nav extends React.Component {
                     <div id="navBar">
 
                         <div id="navBtns">
+                       
+                        <Link to={{
+                            pathname: "/showmap",
+                            state: { user: this.state.user, loggedIn: this.state.loggedIn, results:this.state.results }
+                        }}> <Place style={styles.iconStyle} style={styles.mediumIcon} iconStyle={styles.iconStyle}> </Place></Link>
+                       
                             {
                                 (isLoggedIn()) ?
                                 <Person style={styles.iconStyle} style={styles.mediumIcon} iconStyle={styles.iconStyle} onClick={this.handleLogout} label="Logout" />
@@ -125,7 +137,12 @@ class Nav extends React.Component {
                             }}>
                                 <MenuItem onClick={this.handleClose}>Search Places</MenuItem>
                             </Link>
-            
+                            <Link to={{
+                                pathname: "/showmap",
+                                state: { user: this.state.user, loggedIn: this.state.loggedIn, results:this.state.results }
+                            }}
+                            ><MenuItem onClick={this.handleClose}>Show Map</MenuItem>
+                            </Link>
                             {
                                 (isLoggedIn()) ?
                                     <Link to={{
