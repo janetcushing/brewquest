@@ -65,6 +65,24 @@ class Search extends Component {
     });
   };
 
+  showPosition = position => {
+    console.log("Latitude: " + position.coords.latitude + 
+    " Longitude: " + position.coords.longitude);
+    let loc = position.coords.latitude + ',' +  position.coords.longitude;
+    console.log(position);
+    this.setState({ searchLocation: "", results: [] })
+       this.searchApiPlaces(loc);
+  
+}
+
+  getUserLocation = event => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(this.showPosition);  
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+}
+
   handleFormSubmit = event => {
     event.preventDefault();
     if (!this.state.searchLocation) {
@@ -114,6 +132,7 @@ class Search extends Component {
               searchLocation={
                 this.state.searchLocation
               }
+              getUserLocation={this.getUserLocation}
             />
             </Col>
           </Row>
