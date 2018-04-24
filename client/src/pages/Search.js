@@ -5,7 +5,7 @@ import Col from "../components/Col";
 import SearchField from "../components/SearchField";
 import ResultsCard from "../components/ResultsCard/ResultsCard";
 import API from "../utils/API";
-import { isLoggedIn } from '../utils/AuthService';
+import { isLoggedIn, setResults, getResults, clearResults } from '../utils/AuthService';
 
 
 class Search extends Component {
@@ -43,16 +43,20 @@ class Search extends Component {
   }
 
   searchApiPlaces = query => {
+    clearResults();
     API.getApiPlaces(query)
       .then(res => {
         if (res.data === "location error from geocoder.geocode") {
           alert("Please enter a valid location");
         } else {
-          for (let i = 0; i < res.data.placeDetails.length; i++) {
-          }
+          // for (let i = 0; i < res.data.placeDetails.length; i++) {
+          // }
           this.setState({
             result: res.data.placeDetails
           });
+          console.log(res.data.placeDetails);
+          setResults(res.data.placeDetails);
+          console.log(getResults());
         }
       })
       .catch(err => console.log(err));
@@ -70,7 +74,7 @@ class Search extends Component {
     " Longitude: " + position.coords.longitude);
     let loc = position.coords.latitude + ',' +  position.coords.longitude;
     console.log(position);
-    this.setState({ searchLocation: "", results: [] })
+    this.setState({ searchLocation: "", results: [] });
        this.searchApiPlaces(loc);
   
 }

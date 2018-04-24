@@ -31,6 +31,7 @@ class Nav extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            searchLocation: "",
             open: false,
             loggedIn: false,
             user: {},
@@ -52,11 +53,25 @@ class Nav extends React.Component {
 
                  var userAgent = window.navigator.userAgent;
                  console.log("userAgent " + userAgent);
+
             }
 
             componentDidMount() {
                 var userAgent = window.navigator.userAgent;
                 console.log("userAgent " + userAgent);
+
+
+                //  if (this.props.location.state) {
+                //     this.setState({
+                //         searchLocation: "03801",
+                //         results: [
+                //             { brewery_name: 'Throwback Brewery', latitude: 42.9810948, longitude: -70.8345561 },
+                //             { brewery_name: 'Loaded Question Brewing Company - coming soon', latitude: 43.0679485, longitude: -70.7750565 },
+                //             { brewery_name: 'Stoneface Brewing Co.', latitude: 43.1149002, longitude: -70.8185158 }
+                //           ]
+                //       });
+                //     }
+                console.log("results" + this.state.results);
             }
         
     handleLogin = () => {
