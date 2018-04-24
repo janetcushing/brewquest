@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import GoogleMapReact from 'google-map-react';
+// import GoogleMapReact from 'google-map-react';
+import Map from '../components/Map';
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 // import { grey50 } from 'material-ui/styles/colors';
+import { getResults } from '../utils/AuthService';
 
 // const styles = {
 //   smallIcon: {
@@ -11,131 +14,69 @@ import GoogleMapReact from 'google-map-react';
 // };
 
 
-const AnyReactComponent = ({ text }) => (
-  <div style={{
-    position: 'relative', color: 'white', background: 'red',
-    height: 40, width: 60, top: -20, left: -30,    
-  }}>
-    {text}
-  </div>
-);
- 
+// const AnyReactComponent = ({ text }) => (
+//   <div style={{
+//     position: 'relative', color: 'white', background: 'red',
+//     height: 40, width: 60, top: -20, left: -30,
+//   }}>
+//     {text}
+//   </div>
+// );
+
 class ShowMap extends Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      searchLocation: "",
+      results: []
+    };
+
+  }
+
+
+
   static defaultProps = {
-    center: {lat:  43.013453, lng: -70.895234},
-    zoom: 11
+    center: { lat: 43.013453, lng: -70.895234 },
+    zoom: 11,
+
   };
- 
+
+  componentWillMount() {
+    if (this.props.location.state) {
+      // this.setState({
+      // searchLocation: this.props.location.state.searchLocation,
+      // results: this.props.location.state.results
+      // });
+    }
+
+
+
+  }
+
+
   render() {
+    const results = getResults();
+    console.log("results");
+    console.log(results);
+    const results2 = [
+      { brewery_name: 'Throwback Brewery', latitude: 42.9810948, longitude: -70.8345561 },
+      { brewery_name: 'Loaded Question Brewing Company - coming soon', latitude: 43.0679485, longitude: -70.7750565 },
+      { brewery_name: 'Stoneface Brewing Co.', latitude: 43.1149002, longitude: -70.8185158 }
+    ];
     return (
-      <div style={{width: '100%', height: '800px'}}>
-      {/* <ShowMap/> */}
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: 'AIzaSyCBumUHvERt5G6PSGrvs9MQHRbbHdS7BlQ' }}
-        defaultCenter={this.props.center}
-        defaultZoom={this.props.zoom}
-      >
-        <AnyReactComponent
-          lat={43.013453}
-          lng={-70.895234}
-          text={'Stratham, NH'}
+      <div>
+        <Map
+          results={results}
+          isMarkerShown
+          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+          loadingElement={<div style={{ height: `100vh` }} />}
+          containerElement={<div style={{ height: `100vh` }} />}
+          mapElement={<div style={{ height: `100vh` }} />}
         />
-      </GoogleMapReact> 
-     </div>
+      </div>
     );
-   
   }
 }
 
-// ReactDOM.render(
-  // <div style={{width: '100%', height: '400px'}}>
-  //   <ShowMap/>
-  // </div>,
-  // document.getElementById('main')
-  
-
-// class ShowMap extends Component {
-//   constructor(props, context) {
-//     super(props, context);
-
-//     this.state = {
-//       open: false,
-//       searchLocation: "",
-//       user: {},
-//       results: []
-//     };
-
-  //   this.handleRequestClose = this.handleRequestClose.bind(this);
-  //   this.handleTouchTap = this.handleTouchTap.bind(this);
-  //   const service = new google.maps.places.PlacesService(map);
-  //   service.nearbySearch(request, (results, status) => {
-  //     if (status == google.maps.places.PlacesServiceStatus.OK) {
-  //       for (var i = 0; i < results.length; i++) {
-  //         var place = results[i];
-  //         // If the request succeeds, draw the place location on
-  //         // the map as a marker, and register an event to handle a
-  //         // click on the marker.
-  //         var marker = new google.maps.Marker({
-  //           map: map,
-  //           position: place.geometry.location
-  //         });
-  //       }
-  //     }
-  //   });
-  // }
-
-  
- 
-
-
-
-  // initialize() {
-  //   var pyrmont = new google.maps.LatLng(-33.8665, 151.1956);
-  //   var map = new google.maps.Map(document.getElementById('map'), {
-  //     center: pyrmont,
-  //     zoom: 15,
-  //     scrollwheel: false
-  //   });
-  // }
-
-  // componentWillMount() {
-  //   if (this.props.location.state) {
-  //     this.setState({
-  //       loggedIn: this.props.location.state.loggedIn,
-  //       user: this.props.location.state.user,
-  //       user: this.props.location.state.results
-  //     });
-  //   }
-  //   initialize();
-  // }
-
-
-  
-  
-  
-  // handleRequestClose() {
-  //   this.setState({
-  //     open: false,
-  //   });
-  // }
-
-  // handleTouchTap() {
-  //   this.setState({
-  //     open: true,
-  //   });
-  // }
-
-//   render() {
-    
-
-//     return (
-
-//       <div>
-//           <div id="searchPlacesDiv">
-//             <br />
-//           </div>
-//       </div>
-//     );
-//   }
-// }
 export default ShowMap;

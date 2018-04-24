@@ -6,7 +6,7 @@ const ACCESS_TOKEN_KEY = 'access_token';
 const CLIENT_ID = 'hBUrEY7ugr1dCF8SatxQiOnIVVW4c5ia';
 const CLIENT_DOMAIN = 'beer-quest.auth0.com';
 // const REDIRECT = process.env.CALLBACK_URI || 'http://localhost:3000/callback';
-const REDIRECT = window.location.hostname === 'beer-quest.herokuapp.com' ? 'https://' + window.location.hostname + '/callback' : 'http://localhost:3000/callback'
+const REDIRECT = window.location.hostname === 'brewquest.herokuapp.com' ? 'https://' + window.location.hostname + '/callback' : 'http://localhost:3000/callback'
 const SCOPE = 'openid profile';
 const AUDIENCE = 'https://beer-quest.auth0.com/userinfo';
 
@@ -121,4 +121,21 @@ export function clearUser() {
 // Get  user aud from local storage
 export function getUserAud() {
   return localStorage.getItem('uaud');
+}
+
+// Get and store results in local storage
+export function setResults(results) {
+  localStorage.setItem('results', JSON.stringify(results));
+  return;
+}
+
+// Clear user name from local storage
+export function clearResults() {
+  localStorage.removeItem('results');
+}
+
+// Get  user aud from local storage
+export function getResults() {
+  return JSON.parse(localStorage.getItem("results") || "[{}]");
+  // localStorage.getItem('results');
 }
