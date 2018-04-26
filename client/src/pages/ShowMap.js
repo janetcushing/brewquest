@@ -29,7 +29,8 @@ class ShowMap extends Component {
 
     this.state = {
       searchLocation: "",
-      results: []
+      results: [],
+      windowPosition: null
     };
 
   }
@@ -49,27 +50,47 @@ class ShowMap extends Component {
       // results: this.props.location.state.results
       // });
     }
-
-
-
   }
 
+  toggleInfoWindow = (loc) => {
+    // clicking 'x' in the info window will pass null, so if we detect that, reset the position in state
+    if (loc == null) {
+      this.setState({ windowPosition: null })
+      return
+    }
+    // otherwise get coords of clicked marker and set to state
+    let markerLoc = { lat: loc.lat, lng: loc.Lng }
+    this.setState({ windowPosition: markerLoc })
+  }
 
+  onToggleOpen = (isOpen) =>{
+    if(isOpen){
+      return isOpen = false;
+     } else{
+      return isOpen=true;
+    }
+  }
+
+  
   render() {
     const results = getResults();
     console.log("results");
     console.log(results);
-    const results2 = [
-      { brewery_name: 'Throwback Brewery', latitude: 42.9810948, longitude: -70.8345561 },
-      { brewery_name: 'Loaded Question Brewing Company - coming soon', latitude: 43.0679485, longitude: -70.7750565 },
-      { brewery_name: 'Stoneface Brewing Co.', latitude: 43.1149002, longitude: -70.8185158 }
-    ];
+    // const results2 = [
+    //   { brewery_name: 'Throwback Brewery', latitude: 42.9810948, longitude: -70.8345561 },
+    //   { brewery_name: 'Loaded Question Brewing Company - coming soon', latitude: 43.0679485, longitude: -70.7750565 },
+    //   { brewery_name: 'Stoneface Brewing Co.', latitude: 43.1149002, longitude: -70.8185158 }
+    // ];
     return (
       <div>
         <Map
           results={results}
           isMarkerShown
-          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+          isOpen={false}
+          onToggleOpen={this.onToggleOpen}
+          windowPosition={this.state.windowPosition}
+          toggleInfoWindow={this.toggleInfoWindow}
+          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCBumUHvERt5G6PSGrvs9MQHRbbHdS7BlQ"
           loadingElement={<div style={{ height: `100vh` }} />}
           containerElement={<div style={{ height: `100vh` }} />}
           mapElement={<div style={{ height: `100vh` }} />}
