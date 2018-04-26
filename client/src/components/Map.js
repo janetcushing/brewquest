@@ -16,7 +16,7 @@ const Map = withScriptjs(withGoogleMap((props) =>
             icon={'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'}
             position={{ lat: 43.013453, lng: -70.895234 }} />}
 
-        {props.results && props.results.map(result =>
+        {/* {props.results && props.results.map(result =>
 
             <Marker
                 key={result.details_key}
@@ -33,9 +33,9 @@ const Map = withScriptjs(withGoogleMap((props) =>
                             className="raleway-text"
                         />
                         <CardText expandable={true}
-                            className="raleway-text">
+                            className="raleway-text"> */}
 
-                            <h4>Total Reviews</h4>
+                            {/* <h4>Total Reviews</h4>
                             {result.num_reviews} reviews
                         <br />
                             <h4>Open Now?</h4>
@@ -51,8 +51,8 @@ const Map = withScriptjs(withGoogleMap((props) =>
                             <a href={result.website} target="_new_tab">{result.website}</a>
                             <br />
                             {result.saved}
-                            <CardActions>
-                                {
+                            <CardActions> */}
+                                {/* {
                                     (!props.loggedIn) ?
                                         <RaisedButton
                                             onClick={() => login()}
@@ -76,9 +76,9 @@ const Map = withScriptjs(withGoogleMap((props) =>
                             </CardActions>
                         </CardText>
                     </Card>
-                </InfoWindow>}
-            </Marker>
-        )}
+                </InfoWindow>} */}
+            {/* </Marker> */}
+        {/* )} */}
     </GoogleMap >
 ))
 
