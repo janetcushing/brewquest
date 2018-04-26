@@ -8,8 +8,6 @@ import { login } from '../utils/AuthService';
 
 const Map = withScriptjs(withGoogleMap((props) =>
 
-
-
     <GoogleMap
         defaultZoom={11}
         defaultCenter={{ lat: 43.013453, lng: -70.895234 }}

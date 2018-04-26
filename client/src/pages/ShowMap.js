@@ -71,6 +71,7 @@ class ShowMap extends Component {
     }
   }
 
+  
   render() {
     const results = getResults();
     console.log("results");
