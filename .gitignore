@@ -28,6 +28,7 @@ coverage
 # Bower dependency directory (https://bower.io/)
 bower_components
 
+
 # node-waf configuration
 .lock-wscript
 
@@ -58,4 +59,9 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# works in progress
+**/src/components/Map_class.js
+**/src/components/Map_label.js
+**/src/components/Map.1.js
 

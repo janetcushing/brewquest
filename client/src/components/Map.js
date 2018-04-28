@@ -15,16 +15,16 @@ const Map = compose(
         mapElement: <div style={{ height: `100vh` }} />,
     }),
     withStateHandlers(() => ({
-        isOpen: false
-        // centerIsOpen: false,
+        isOpen: false,
+        centerIsOpen: false,
         
     }),
         {
             onToggleOpen: ({ isOpen }) => () => ({
                 isOpen: !isOpen,
-                // }),
-                // onCenterToggleOpen: ({ centerIsOpen }) => () => ({
-                //     centerIsOpen: !centerIsOpen,
+                }),
+                onCenterToggleOpen: ({ centerIsOpen }) => () => ({
+                    centerIsOpen: !centerIsOpen,
             })
         }
     ),
@@ -35,7 +35,7 @@ const Map = compose(
         defaultZoom={11}
         defaultCenter={{ lat: 43.013453, lng: -70.895234 }}
     >
-        {/* {props.isMarkerShown && <Marker
+        {props.isMarkerShown && <Marker
             icon={'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'}
             position={{ lat: 43.013453, lng: -70.895234 }}
             onClick={props.onCenterToggleOpen} >
@@ -44,7 +44,7 @@ const Map = compose(
                 <h5>Search Begins Here</h5>
             </InfoWindow>}
         </Marker>
-        } */}
+        }
         {props.results && props.results.map(result =>
             <Marker
                 key={result.details_key}
