@@ -52,24 +52,24 @@ class ShowMap extends Component {
     }
   }
 
-  toggleInfoWindow = (loc) => {
-    // clicking 'x' in the info window will pass null, so if we detect that, reset the position in state
-    if (loc == null) {
-      this.setState({ windowPosition: null })
-      return
-    }
-    // otherwise get coords of clicked marker and set to state
-    let markerLoc = { lat: loc.lat, lng: loc.Lng }
-    this.setState({ windowPosition: markerLoc })
-  }
+  // toggleInfoWindow = (loc) => {
+  //   // clicking 'x' in the info window will pass null, so if we detect that, reset the position in state
+  //   if (loc == null) {
+  //     this.setState({ windowPosition: null })
+  //     return
+  //   }
+  //   // otherwise get coords of clicked marker and set to state
+  //   let markerLoc = { lat: loc.lat, lng: loc.Lng }
+  //   this.setState({ windowPosition: markerLoc })
+  // }
 
-  onToggleOpen = (isOpen) =>{
-    if(isOpen){
-      return isOpen = false;
-     } else{
-      return isOpen=true;
-    }
-  }
+  // onToggleOpen = (event, isOpen) => {
+  //   if(isOpen){
+  //     return isOpen = false;
+  //    } else{
+  //     return isOpen=true;
+  //   }
+  // }
 
   
   render() {
@@ -87,13 +87,15 @@ class ShowMap extends Component {
           results={results}
           isMarkerShown
           isOpen={false}
-          onToggleOpen={this.onToggleOpen}
-          windowPosition={this.state.windowPosition}
-          toggleInfoWindow={this.toggleInfoWindow}
-          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCBumUHvERt5G6PSGrvs9MQHRbbHdS7BlQ"
-          loadingElement={<div style={{ height: `100vh` }} />}
-          containerElement={<div style={{ height: `100vh` }} />}
-          mapElement={<div style={{ height: `100vh` }} />}
+          centerIsOpen={false}
+          thisResult={0}
+          // onToggleOpen={this.onToggleOpen}
+          // windowPosition={this.state.windowPosition}
+          // toggleInfoWindow={this.toggleInfoWindow}
+          // googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCBumUHvERt5G6PSGrvs9MQHRbbHdS7BlQ"
+          // loadingElement={<div style={{ height: `100vh` }} />}
+          // containerElement={<div style={{ height: `100vh` }} />}
+          // mapElement={<div style={{ height: `100vh` }} />}
         />
       </div>
     );
