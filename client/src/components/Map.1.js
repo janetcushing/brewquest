@@ -8,6 +8,8 @@ import Stars from 'material-ui/svg-icons/action/stars';
 import { compose, withProps, withStateHandlers } from  "recompose";
 
 
+
+
 const Map = withScriptjs(withGoogleMap((props) =>
 
     <GoogleMap
