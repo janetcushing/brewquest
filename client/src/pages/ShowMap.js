@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-// import GoogleMapReact from 'google-map-react';
 import Map from '../components/Map';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
-// import { grey50 } from 'material-ui/styles/colors';
 import { getResults } from '../utils/AuthService';
 
 // const styles = {
@@ -62,25 +59,11 @@ class ShowMap extends Component {
   //   let markerLoc = { lat: loc.lat, lng: loc.Lng }
   //   this.setState({ windowPosition: markerLoc })
   // }
-
-  // onToggleOpen = (event, isOpen) => {
-  //   if(isOpen){
-  //     return isOpen = false;
-  //    } else{
-  //     return isOpen=true;
-  //   }
-  // }
-
-  
+ 
   render() {
     const results = getResults();
     console.log("results");
     console.log(results);
-    // const results2 = [
-    //   { brewery_name: 'Throwback Brewery', latitude: 42.9810948, longitude: -70.8345561 },
-    //   { brewery_name: 'Loaded Question Brewing Company - coming soon', latitude: 43.0679485, longitude: -70.7750565 },
-    //   { brewery_name: 'Stoneface Brewing Co.', latitude: 43.1149002, longitude: -70.8185158 }
-    // ];
     return (
       <div>
         <Map
@@ -88,7 +71,7 @@ class ShowMap extends Component {
           isMarkerShown
           isOpen={false}
           centerIsOpen={false}
-          thisResult={0}
+          centerPosition={{lat: 43.013453, lng: -70.895234 }}
           // onToggleOpen={this.onToggleOpen}
           // windowPosition={this.state.windowPosition}
           // toggleInfoWindow={this.toggleInfoWindow}
