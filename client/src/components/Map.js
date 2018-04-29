@@ -50,7 +50,7 @@ const Map = compose(
                 key={result.details_key}
                 icon={'http://maps.google.com/mapfiles/ms/icons/red-dot.png'}
                 position={{ lat: result.latitude, lng: result.longitude }}
-                onClick={props.onToggleOpen}
+                // onClick={props.onToggleOpen}
             >
        
 
