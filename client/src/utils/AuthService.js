@@ -129,13 +129,29 @@ export function setResults(results) {
   return;
 }
 
-// Clear user name from local storage
+// Clear results from local storage
 export function clearResults() {
   localStorage.removeItem('results');
 }
 
-// Get  user aud from local storage
+// Get  results from local storage
 export function getResults() {
   return JSON.parse(localStorage.getItem("results") || "[{}]");
   // localStorage.getItem('results');
+}
+
+// Get and store search data in local storage
+export function setSearchLocationDetails(search) {
+  localStorage.setItem('search', search);
+  return;
+}
+
+// Clear search data from local storage
+export function clearSearchLocationDetails() {
+  localStorage.removeItem('search');
+}
+
+// Get  search data from local storage
+export function getSearchLocationDetails() {
+  return localStorage.getItem("search");
 }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Map from '../components/Map';
-import { getResults } from '../utils/AuthService';
+import { getResults, getSearchLocationDetails } from '../utils/AuthService';
 
 // const styles = {
 //   smallIcon: {
@@ -25,7 +25,7 @@ class ShowMap extends Component {
     super(props, context);
 
     this.state = {
-      searchLocation: "",
+      searchLocationDetails: {},
       results: [],
       windowPosition: null
     };
@@ -42,10 +42,10 @@ class ShowMap extends Component {
 
   componentWillMount() {
     if (this.props.location.state) {
-      // this.setState({
-      // searchLocation: this.props.location.state.searchLocation,
-      // results: this.props.location.state.results
-      // });
+      this.setState({
+      searchLocationDetails: this.props.location.state.searchLocationDetails,
+      results: this.props.location.state.results
+      });
     }
   }
 
@@ -62,8 +62,9 @@ class ShowMap extends Component {
  
   render() {
     const results = getResults();
-    console.log("results");
-    console.log(results);
+    const search = (getSearchLocationDetails()).split(',');
+    const clat = parseFloat(search[0]);
+    const clng = parseFloat(search[1]);
     return (
       <div>
         <Map
@@ -71,14 +72,10 @@ class ShowMap extends Component {
           isMarkerShown
           isOpen={false}
           centerIsOpen={false}
-          centerPosition={{lat: 43.013453, lng: -70.895234 }}
+          centerPosition={{lat: clat, lng: clng} }
           // onToggleOpen={this.onToggleOpen}
           // windowPosition={this.state.windowPosition}
           // toggleInfoWindow={this.toggleInfoWindow}
-          // googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCBumUHvERt5G6PSGrvs9MQHRbbHdS7BlQ"
-          // loadingElement={<div style={{ height: `100vh` }} />}
-          // containerElement={<div style={{ height: `100vh` }} />}
-          // mapElement={<div style={{ height: `100vh` }} />}
         />
       </div>
     );
