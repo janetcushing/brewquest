@@ -84,12 +84,13 @@ module.exports = {
     //----------------------------------------------------------
     const getPlacesHeaderData = (locn, res) => {
       var headerPromise = new Promise(function (resolve, reject) {
+        console.log(BASEURL + APIKEY + LOCATION + locn + RANKBY + KEYWORD);
         rp(BASEURL + APIKEY + LOCATION + locn + RANKBY + KEYWORD)
           .then(response => JSON.parse(response))
           .then(body => {
             if (body.status != "OK") {
               console.log(`*********************************`);
-              console.log(`query status ${body.status}`);
+              console.log(`Header query status ${body.status}`);
               console.log(`*********************************`);
             }
             holdplacesBody = body.results;
@@ -137,7 +138,7 @@ module.exports = {
             .then(detailBody => {
               if (detailBody.status != "OK") {
                 console.log(`*********************************`);
-                console.log(`query status ${detailBody.status}`);
+                console.log(`Detail query status ${detailBody.status}`);
                 console.log(`*********************************`);
               }
               holdDetailBody.push(detailBody.result);

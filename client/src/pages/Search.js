@@ -6,6 +6,7 @@ import SearchField from "../components/SearchField";
 import ResultsCard from "../components/ResultsCard/ResultsCard";
 import API from "../utils/API";
 import { isLoggedIn, setResults, getResults, clearResults } from '../utils/AuthService';
+import {  setSearchLocationDetails, getSearchLocationDetails, clearSearchLocationDetails } from '../utils/AuthService';
 
 
 class Search extends Component {
@@ -38,7 +39,6 @@ class Search extends Component {
     });
     if (this.props.location.state) {
       if (this.props.location.state.searchLocation) {
-        //  let loc = `${this.state.searchLocationDetails.lat},${this.state.searchLocationDetails.lng}`;
         console.log('about to geocodeSearchCriteria');
         this.geocodeSearchCriteria(this.props.location.state.searchLocation);
       }
@@ -88,6 +88,7 @@ class Search extends Component {
   }
 
   geocodeSearchCriteria = loc => {
+    clearSearchLocationDetails();
     API.reverseGeocode(loc)
       .then(res => {
         console.log(res);
@@ -108,6 +109,7 @@ class Search extends Component {
             searchLocation: res.data.locn.extra.neighborhood
           });
           let loc = `${res.data.locn.latitude},${res.data.locn.longitude}`;
+          setSearchLocationDetails(loc);
           console.log(this.state.searchLocationDetails);
           console.log(`searchLocation:  ${this.state.searchLocation}`);
           this.searchApiPlaces(loc);
