@@ -1,0 +1,26 @@
+{
+    "formattedAddress": "15-17 Holmgren Rd, Stratham, NH 03885,USA",
+    "latitude": 42.9925147,
+    "longitude": -70.8902425,
+    "extra": {
+        "googlePlaceId": "EioxNS0xNyBIb2xtZ3JlbiBSZCwgU3RyYXRoYW0sIE5IIDAzODg1LCBVU0E",
+        "confidence": 0.9,
+        "premise": null,
+        "subpremise": null,
+        "neighborhood": "Stratham",
+        "establishment": null
+    },
+    "administrativeLevels": {
+        "level2long": "RockinghamCounty",
+        "level2short": "RockinghamCounty",
+        "level1long": "NewHampshire",
+        "level1short": "NH"
+    },
+    "streetNumber": "15-17",
+    "streetName": "Holmgren Road",
+    "city": "Stratham",
+    "country": "UnitedStates",
+    "countryCode": "US",
+    "zipcode": "03885",
+    "provider": "google"
+}

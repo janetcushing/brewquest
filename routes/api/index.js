@@ -3,6 +3,7 @@ const savedPlacesRoutes = require("./savedplaces");
 const savedPlaceRoutes = require("./savedplace");
 const savedNotesRoutes = require("./savednotes");
 const savedReviewsRoutes = require("./savedreviews");
+const apiLocationRoute = require("./apilocation");
 const apiPlacesRoute = require("./apiplaces");
 const userRoute = require("./user");
 
@@ -19,6 +20,9 @@ router.use("/savedreviews", savedReviewsRoutes);
 
 // Database Routes - User table
 router.use("/user", userRoute);
+
+// API route - to get Reverse Geocode location
+router.use("/apilocation", apiLocationRoute);
 
 // API route - to get Google api places data
 router.use("/apiplaces", apiPlacesRoute);

@@ -6,6 +6,7 @@ import LocalDrink from 'material-ui/svg-icons/maps/local-drink';
 import CheckCircle from 'material-ui/svg-icons/action/check-circle';
 import ThumbUp from 'material-ui/svg-icons/action/thumb-up';
 import { grey50 } from 'material-ui/styles/colors';
+import API from "../utils/API";
 
 const styles = {
   smallIcon: {
@@ -22,8 +23,8 @@ class Home extends Component {
     this.state = {
       open: false,
       redirect: false,
-      searchLocation: "",
-      searchLocationDetails: {},
+      searchLocation: {},
+      neighborhood: "",
       loggedIn: false,
       user: {}
     };
@@ -46,8 +47,8 @@ class Home extends Component {
     " Longitude: " + position.coords.longitude);
     let loc = position.coords.latitude + ',' +  position.coords.longitude;
     console.log(position);
-    this.setState({ searchLocation:  loc});
-    this.setState({ searchLocationDetails: {}});
+    this.setState({ searchLocation:  {lat: position.coords.latitude, lng: position.coords.longitude}});
+    this.setState({ neighborhood:  loc});
     this.setState({ redirect: true });
 }
 
@@ -58,11 +59,9 @@ class Home extends Component {
           alert("Geolocation is not supported by this browser.");
       }
   }
-  
-
 
   handleSearchLocationChange = event => {
-    this.setState({ searchLocation: event.target.value });
+    this.setState({ neighborhood: event.target.value });
   };
 
 
@@ -72,7 +71,7 @@ class Home extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (!this.state.searchLocation) {
+    if (!this.state.neighborhood) {
       alert("Please add search criteria");
     } else {
       this.setState({ redirect: true });
@@ -98,7 +97,6 @@ class Home extends Component {
         pathname: '/search',
         state: {
           searchLocation: this.state.searchLocation,
-          searchLocationDetails: this.state.searchLocationDetails,
           user: this.state.user,
           loggedIn: this.state.loggedIn
         }
@@ -120,7 +118,7 @@ class Home extends Component {
                 handleSearchLocationChange={this.handleSearchLocationChange}
                 handleFormSubmit={this.handleFormSubmit}
                 getUserLocation={this.getUserLocation}
-                searchLocation={this.state.searchLocation} />
+                searchLocation={this.state.neighborhood} />
             </div>
           </div>
         </div>
