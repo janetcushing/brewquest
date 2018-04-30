@@ -24,7 +24,7 @@ const SearchField = props => (
     <div>
         <TextField
             name="SearchforPlaces"
-            hintText="Search for Places Here"
+            // hintText="Search for Places Here"
             hintStyle={styles.hintStyle}
             inputStyle={styles.inputStyle}
             value={props.searchLocation}
@@ -38,7 +38,7 @@ const SearchField = props => (
                 onClick={(event) => props.handleFormSubmit(event)}
                 className="search-button-home"
             />
-            <p> Or </p>
+            <p> OR </p>
             <RaisedButton
                 label="Use My Location"
                 buttonStyle={styles.buttonStyle}

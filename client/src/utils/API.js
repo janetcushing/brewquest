@@ -34,6 +34,11 @@ export default {
     })
   },
   // get data from the google places api
+  reverseGeocode: function (loc) {
+    console.log('in reverseGeocode');
+    return axios.get("/api/apilocation/" + loc)
+  },
+  // get data from the google places api
   getApiPlaces: function (query) {
     return axios.get("/api/apiplaces/" + query)
   },
