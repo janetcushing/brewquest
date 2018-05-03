@@ -6,6 +6,7 @@ import LocalDrink from 'material-ui/svg-icons/maps/local-drink';
 import CheckCircle from 'material-ui/svg-icons/action/check-circle';
 import ThumbUp from 'material-ui/svg-icons/action/thumb-up';
 import { grey50 } from 'material-ui/styles/colors';
+import CircularProgress from 'material-ui/CircularProgress';
 
 const styles = {
   smallIcon: {
@@ -24,6 +25,7 @@ class Home extends Component {
       redirect: false,
       searchLocation: "",
       searchLocationDetails: {},
+      isSearching: false,
       loggedIn: false,
       user: {}
     };
@@ -42,23 +44,26 @@ class Home extends Component {
   }
 
   showPosition = position => {
-    console.log("Latitude: " + position.coords.latitude + 
-    " Longitude: " + position.coords.longitude);
-    let loc = position.coords.latitude + ',' +  position.coords.longitude;
+    console.log("Latitude: " + position.coords.latitude +
+      " Longitude: " + position.coords.longitude);
+    let loc = position.coords.latitude + ',' + position.coords.longitude;
     console.log(position);
-    this.setState({ searchLocation:  loc});
-    this.setState({ searchLocationDetails: {}});
-    this.setState({ redirect: true });
-}
-
-   getUserLocation = event => {
-      if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(this.showPosition);  
-      } else {
-          alert("Geolocation is not supported by this browser.");
-      }
+    this.setState({
+      searchLocation: loc,
+      searchLocationDetails: {},
+      redirect: true,
+      isSearching: true
+    });
   }
-  
+
+  getUserLocation = event => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.showPosition);
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  }
+
 
 
   handleSearchLocationChange = event => {
@@ -67,7 +72,7 @@ class Home extends Component {
 
 
 
-  
+
 
 
   handleFormSubmit = event => {
@@ -75,7 +80,7 @@ class Home extends Component {
     if (!this.state.searchLocation) {
       alert("Please add search criteria");
     } else {
-      this.setState({ redirect: true });
+      this.setState({ redirect: true, isSearching: true });
     }
   };
 
@@ -99,6 +104,7 @@ class Home extends Component {
         state: {
           searchLocation: this.state.searchLocation,
           searchLocationDetails: this.state.searchLocationDetails,
+          isSearching: this.state.isSearching,
           user: this.state.user,
           loggedIn: this.state.loggedIn
         }
@@ -122,6 +128,9 @@ class Home extends Component {
                 getUserLocation={this.getUserLocation}
                 searchLocation={this.state.searchLocation} />
             </div>
+            <div>
+                {(this.state.isSearching) ? <CircularProgress size={60} thickness={7} /> : <div></div>}
+              </div>
           </div>
         </div>
         <div id="secondary-info">
