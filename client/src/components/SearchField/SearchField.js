@@ -36,8 +36,7 @@ const SearchField = props => (
                 buttonStyle={styles.buttonStyle}
                 onTouchTap={this.handleTouchTap}
                 onClick={(event) => props.handleFormSubmit(event)}
-                className="search-button-home"
-            />
+                className="search-button-home" />
             <p> OR </p>
             <RaisedButton
                 label="Use My Location"

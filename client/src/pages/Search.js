@@ -6,7 +6,8 @@ import SearchField from "../components/SearchField";
 import ResultsCard from "../components/ResultsCard/ResultsCard";
 import API from "../utils/API";
 import { isLoggedIn, setResults, getResults, clearResults } from '../utils/AuthService';
-import {  setSearchLocationDetails, getSearchLocationDetails, clearSearchLocationDetails } from '../utils/AuthService';
+import { setSearchLocationDetails, getSearchLocationDetails, clearSearchLocationDetails } from '../utils/AuthService';
+import CircularProgress from 'material-ui/CircularProgress';
 
 
 class Search extends Component {
@@ -17,6 +18,7 @@ class Search extends Component {
     this.state = {
       searchLocation: "",
       searchLocationDetails: {},
+      isSearching: false,
       loggedIn: "",
       result: [],
       user: {}
@@ -27,6 +29,7 @@ class Search extends Component {
     if (this.props.location.state) {
       this.setState({
         searchLocation: this.props.location.state.searchLocation,
+        isSearching: this.props.location.state.isSearching,
         user: this.props.location.state.user,
         loggedIn: this.props.location.state.loggedIn
       });
@@ -54,6 +57,7 @@ class Search extends Component {
     console.log('about to getApiPlaces');
     API.getApiPlaces(query)
       .then(res => {
+        
         if (res.data === "location error from geocoder.geocode") {
           alert("Please enter a valid location");
         } else {
@@ -61,7 +65,8 @@ class Search extends Component {
           // }
           console.log(res);
           this.setState({
-            result: res.data.placeDetails
+            result: res.data.placeDetails,
+            isSearching: false
           });
           console.log(res.data.placeDetails);
           setResults(res.data.placeDetails);
@@ -84,7 +89,7 @@ class Search extends Component {
     let loc = position.coords.latitude + ',' + position.coords.longitude;
     console.log(position);
     this.geocodeSearchCriteria(loc);
-    this.setState({ redirect: true });
+    this.setState({ redirect: true, isSearching: true });
   }
 
   geocodeSearchCriteria = loc => {
@@ -117,9 +122,9 @@ class Search extends Component {
       });
   }
   getUserLocation = event => {
-    this.setState({ searchLocation: ""});
-    this.setState({ searchLocationDetails: {}});
-    this.setState({ results: []});
+    this.setState({ searchLocation: "" });
+    this.setState({ searchLocationDetails: {} });
+    this.setState({ results: [] });
     clearResults();
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(this.showPosition);
@@ -135,7 +140,7 @@ class Search extends Component {
     } else {
       // let loc = `${this.state.searchLocationDetails.lat},${this.state.searchLocationDetails.lng}`;
       // this.setState({ searchLocationDetails: "", results: [] })
-      this.setState({ results: [] })
+      this.setState({ results: [], isSearching: true })
       this.geocodeSearchCriteria(this.state.searchLocation);
     }
   };
@@ -177,7 +182,9 @@ class Search extends Component {
                 handleFormSubmit={this.handleFormSubmit}
                 searchLocation={this.state.searchLocation}
                 getUserLocation={this.getUserLocation}
-              />
+              /> 
+               {(this.state.isSearching)? <CircularProgress size={60} thickness={7} />:<div></div>}
+
             </Col>
           </Row>
         </Container>
