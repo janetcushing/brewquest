@@ -1,8 +1,7 @@
 import React from "react";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
-import { Card, CardActions, CardTitle, CardText, CardHeader } from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
-import { login } from '../utils/AuthService';
+
+
 import { compose, withProps, withStateHandlers } from "recompose";
 import Mapmarker from "./Mapmarker";
 
@@ -44,6 +43,10 @@ const Map = compose(
                 key={result.details_key}
                 detailkey={result.details_key}
                 position={{ lat: result.latitude, lng: result.longitude }}
+                brewery_name={result.brewery_name}
+                rating={result.rating}
+                full_address={result.full_address}
+                website={result.website}
             />
         )}
     </GoogleMap >
