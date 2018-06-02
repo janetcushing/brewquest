@@ -5,7 +5,7 @@ import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import { grey50, grey800 } from 'material-ui/styles/colors';
-import { login, logout, isLoggedIn, getUserAud } from '../../utils/AuthService';
+import { login, logout, isLoggedIn, getUserSub } from '../../utils/AuthService';
 import Person from 'material-ui/svg-icons/social/person';
 import PersonOutline from 'material-ui/svg-icons/social/person-outline';
 import Place from 'material-ui/svg-icons/maps/place'
@@ -42,8 +42,8 @@ class Nav extends React.Component {
 
     componentWillMount() {
                 if (isLoggedIn()) {
-                    let userAud = getUserAud();
-                    let userData = { aud: userAud};
+                    let userSub = getUserSub();
+                    let userData = { sub: userSub};
                     this.setState({ user: userData });
                     this.setState({ loggedIn: true });
     

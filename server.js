@@ -20,7 +20,7 @@ app.use(routes);
 // Set up mongoose access to mongoDB database
 mongoose.Promise = global.Promise;
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/beerquest",
+  process.env.MONGODB_URI || "mongodb://localhost/brewquest",
   {});
 
 // Start the API server

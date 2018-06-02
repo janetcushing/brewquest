@@ -33,7 +33,7 @@ export default {
       been_there: false
     })
   },
-  // get data from the google places api
+  // get location from the google places api
   reverseGeocode: function (loc) {
     console.log('in reverseGeocode');
     return axios.get("/api/apilocation/" + loc)
@@ -46,13 +46,15 @@ export default {
   saveUser: function (userData) {
     return axios.post("/api/user/", userData);
   },
-  // Looks for a user in the UserStore database
-  findUser: function (aud) {
-    return axios.get("/api/user/" + aud);
+  // Looks for a user in the UserStores database
+  findUser: function (sub) {
+    console.log(`im in API.findUser - here is sub`);
+    console.log(sub);
+    return axios.get("/api/user/" + sub);
   },
     // Updates a user in the UserStore database
-    updateUser: function (aud, loggedIn) {
-      return axios.put("/api/user/" + aud, loggedIn);
+    updateUser: function (sub, loggedIn) {
+      return axios.put("/api/user/" + sub, loggedIn);
     },
  // Saves a note to the Notes database
   saveNote: function (savedNoteData) {
@@ -72,7 +74,7 @@ export default {
     return axios.get("/api/savednotes", {
       params: {
         id: noteData.brewery_id,
-        aud: noteData.aud
+        sub: noteData.sub
       }
     });
   },

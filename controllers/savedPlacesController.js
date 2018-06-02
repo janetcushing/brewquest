@@ -4,7 +4,8 @@ const db = require("../models");
 module.exports = {
   findAll: function(req, res) {
     db.Breweries
-      .find(req.query)
+    // .find({sub: req.query.sub})
+      .find()
       .sort({ brewery_name: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -35,19 +36,19 @@ module.exports = {
   },
   findByBreweryId: function(req, res) {
     db.Breweries
-      .find({"brewery_id": req.params.breweryId})
+      .find({sub: req.params.sub ,brewery_id: req.params.breweryId})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   updateByBreweryId: function(req, res) {
     db.Breweries
-      .findOneAndUpdate({ brewery_id: req.params.breweryId }, req.body)
+      .findOneAndUpdate({sub: req.params.sub ,brewery_id: req.params.breweryId }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   removeByBreweryId: function(req, res) {
     db.Breweries
-      .find().where('brewery_id').equals(req.params.breweryId).remove()
+      .find({sub: req.params.sub ,brewery_id: req.params.breweryId}).remove()
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }

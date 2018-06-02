@@ -6,7 +6,7 @@ const NotesSchema = new Schema({
         type: String,
         required: true
     },
-    aud: {
+    sub: {
         type: String,
         required: true
     },

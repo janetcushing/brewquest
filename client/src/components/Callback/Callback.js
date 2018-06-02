@@ -20,20 +20,30 @@ class Callback extends Component {
     let user = decodeToken(token);
     this.setState({ user: user });
     this.setState({ loggedIn: true });
-    let userAud = user.aud;
-    API.findUser(userAud)
+    let userSub = user.sub;
+console.log(`im about to API.findUser, here is userSub`);
+console.log(userSub);
+    API.findUser(userSub)
       .then(res => {
-        if (res.aud) {
+        console.log('res in callback');
+        console.log(res.data.sub);
+        console.log("---");
+        console.log(res);
+        if (res.data.sub) {
           //user is already in database
+          console.log(`user is already in database`)
         } else {
           let userData = user;
+          console.log(`userData ${JSON.stringify(userData)}`);
           API.saveUser(userData)
             .then(resp => {
+              console.log(resp);
             })
             .catch(err => console.log(err));
         }
 
-      })
+      }
+    )
     setUser(user);
     this.setState({ redirect: true });
   }

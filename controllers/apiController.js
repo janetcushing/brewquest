@@ -168,12 +168,14 @@ module.exports = {
               if (dbModel[0]) {
                 holdDbBody.push({
                   "place_id": detailBody[iii].place_id,
-                  "saved": true
+                  "saved": true,
+                  "sub": detailBody[iii].sub 
                 });
               } else {
                 holdDbBody.push({
                   "place_id": detailBody[iii].place_id,
-                  "saved": false
+                  "saved": false,
+                  "sub": detailBody[iii].sub 
                 });
               }
               if (holdDbBody.length === (detailBody.length)) {
@@ -212,6 +214,7 @@ module.exports = {
           }
           let details = {
             "details_key": i,
+            "sub": element.sub,
             "brewery_id": element.id,
             "brewery_name": element.name,
             "icon": element.icon,

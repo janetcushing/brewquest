@@ -109,18 +109,18 @@ export function getTokenExpirationDate(encodedToken) {
 
 // Get and store user in local storage
 export function setUser(user) {
-  localStorage.setItem('uaud', user.aud);
+  localStorage.setItem('usub', user.sub);
   return;
 }
 
 // Clear user name from local storage
 export function clearUser() {
-  localStorage.removeItem('uaud');
+  localStorage.removeItem('usub');
 }
 
-// Get  user aud from local storage
-export function getUserAud() {
-  return localStorage.getItem('uaud');
+// Get  user sub from local storage
+export function getUserSub() {
+  return localStorage.getItem('usub');
 }
 
 // Get and store results in local storage

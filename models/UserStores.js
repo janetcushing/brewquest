@@ -1,23 +1,13 @@
-// Require mongoose
+
 const mongoose = require("mongoose");
 
-// Get a reference to the mongoose Schema constructor
 const Schema = mongoose.Schema;
 
-// Using the Schema constructor, create a new Schema object
-
-const UserStoreSchema = new Schema({
-  insertDate: {
-    type: Date,
-    default: Date.now
-  }, 
+const UserStoreSchema = new Schema({ 
   given_name: {
     type: String
   },
   family_name: {
-    type: String
-  },
-  middle_name: {
     type: String
   },
   nickname: {
@@ -27,9 +17,6 @@ const UserStoreSchema = new Schema({
     type: String
   },
   picture: {
-    type: String
-  },
-  gender: {
     type: String
   },
   locale: {
@@ -43,7 +30,7 @@ const UserStoreSchema = new Schema({
   },
   sub: {
     type: String
-  },
+  }, 
   aud: {
     type: String
   },
@@ -55,13 +42,16 @@ const UserStoreSchema = new Schema({
   },
   at_hash: {
     type: String
-  },
+  }, 
   nonce: {
     type: String
-  }
+  },
+  insertDate: {
+    type: Date,
+    default: Date.now
+  } 
 });
 
-const UserStore = mongoose.model("UserStore", UserStoreSchema);
+const UserStores = mongoose.model("UserStores", UserStoreSchema);
 
-module.exports = UserStore;
-
+module.exports = UserStores;

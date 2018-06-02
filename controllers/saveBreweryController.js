@@ -28,7 +28,7 @@ module.exports = {
     };
     Breweries.create(currentBrewery, function (err, data) {
       if (err) {
-        console.log(`There was a DB error from insertNewBreweryIntoDatabase: ${err} `);
+        console.log(`There was a DB error from createBrewery: ${err} `);
         res.status(500).end();
       } else {
         res.send("success");
