@@ -26,11 +26,13 @@ class SavedPlaces extends Component {
   }
 
   componentDidMount() {
-    this.loadSavedPlaces();
+    let sub = this.state.user.sub; 
+    this.loadSavedPlaces(sub);
   }
 
-  loadSavedPlaces = () => {
-    API.getSavedPlaces()
+  loadSavedPlaces = (sub) => {
+
+    API.getSavedPlaces(sub)
       .then(res =>
         this.setState({ results: res.data })
       )

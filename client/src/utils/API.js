@@ -2,8 +2,10 @@ import axios from "axios";
 
 export default {
   // Gets all places
-  getSavedPlaces: function () {
-    return axios.get("/api/savedplaces");
+  getSavedPlaces: function (sub) {
+    console.log(`im in API.getSavedPlaces - here is sub`);
+    console.log(sub);
+    return axios.get("/api/savedplaces2/" + sub);
   },
   // Gets the brewery from the breweries collection with the given id
   getSavedPlace: function (id) {

@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const savedPlacesRoutes = require("./savedplaces");
+const savedPlaces2Routes = require("./savedplaces2");
 const savedPlaceRoutes = require("./savedplace");
 const savedNotesRoutes = require("./savednotes");
 const savedReviewsRoutes = require("./savedreviews");
@@ -10,6 +11,7 @@ const userRoute = require("./user");
 
 // Database routes - Places/Breweries table     //
 router.use("/savedplaces", savedPlacesRoutes);
+router.use("/savedplaces2", savedPlaces2Routes);
 router.use("/savedplace", savedPlaceRoutes);
 
 // Database routes - Notes table     //
