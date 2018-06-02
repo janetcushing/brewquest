@@ -146,10 +146,13 @@ class Search extends Component {
   };
 
 
-  handlePlacesSave = (event, details_key) => {
+  handlePlacesSave = (event, details_key, sub) => {
     event.preventDefault();
     let holdResult = this.state.result;
     holdResult[details_key].saved = true;
+    holdResult[details_key].sub = sub;
+    console.log( 'holdResult[details_key]');
+    console.log(holdResult[details_key]);
     this.setState({
       result: holdResult
     });
@@ -197,6 +200,7 @@ class Search extends Component {
                 handlePlacesSave={this.handlePlacesSave}
                 handlePlacesDelete={this.handlePlacesDelete}
                 loggedIn={this.state.loggedIn}
+                sub={this.state.user.sub}
               />
             </Col>
           </Row>

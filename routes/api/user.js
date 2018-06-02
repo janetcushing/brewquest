@@ -8,10 +8,10 @@ const userController = require("../../controllers/userController");
  .post(userController.create);
 
 
-// Matches with "/api/user/:aud"
+// Matches with "/api/user/:sub"
 router
-  .route("/:aud")
-  .get(userController.findByAud)
+  .route("/:sub")
+  .get(userController.findBySub)
   .put(userController.update);
 
 module.exports = router;

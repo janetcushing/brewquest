@@ -13,7 +13,7 @@ import PlaceDetailHours from "../components/PlaceDetailHours";
 import PlaceDetailGeneralInformation from "../components/PlaceDetailGeneralInformation";
 import PlaceDetailNotes from "../components/PlaceDetailNotes";
 import PlaceDetailReviews from "../components/PlaceDetailReviews";
-import { getUserAud } from '../utils/AuthService';
+import { getUserSub } from '../utils/AuthService';
 
 class Detail extends Component {
     state = {
@@ -29,8 +29,8 @@ class Detail extends Component {
     };
 
     componentWillMount() {
-        let userAud = getUserAud();
-        let userData = { aud: userAud };
+        let userSub = getUserSub();
+        let userData = { sub: userSub };
         this.setState({ user: userData });
         this.setState({ loggedIn: true });
         if (this.props.location.state) {
@@ -44,7 +44,7 @@ class Detail extends Component {
     componentDidMount() {
         let initialLoadData = {
             brewery_id: this.state.detail._id,
-            aud: this.state.user.aud,
+            sub: this.state.user.sub,
         };
 
         this.loadSavedNotes(initialLoadData);
@@ -84,7 +84,7 @@ class Detail extends Component {
             let savedNoteData = {
                 brewery_id: this.state.detail._id,
                 body: this.state.noteInput,
-                aud: this.state.user.aud
+                sub: this.state.user.sub
             }
             API.saveNote(savedNoteData)
                 .then(res =>
@@ -98,7 +98,7 @@ class Detail extends Component {
     handleDeleteNote = id => {
         let initialLoadData = {
             brewery_id: this.state.detail._id,
-            aud: this.state.user.aud,
+            sub: this.state.user.sub,
         };
 
         API.deleteSavedNote(id)
@@ -131,7 +131,7 @@ class Detail extends Component {
         } else {
             let savedReviewData = {
                 brewery_id: this.state.detail._id,
-                aud: this.state.user.aud,
+                sub: this.state.user.sub,
                 rating: this.state.ratingInput,
                 body: this.state.reviewInput
             }

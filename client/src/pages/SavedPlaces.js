@@ -9,7 +9,7 @@ import Clear from 'material-ui/svg-icons/content/clear';
 import { Card, CardActions, CardTitle } from 'material-ui/Card';
 import CheckBoxOutlineBlank from 'material-ui/svg-icons/toggle/check-box-outline-blank'
 import CheckBox from 'material-ui/svg-icons/toggle/check-box'
-import { getUserAud } from '../utils/AuthService';
+import { getUserSub } from '../utils/AuthService';
 
 class SavedPlaces extends Component {
   state = {
@@ -19,8 +19,8 @@ class SavedPlaces extends Component {
   };
 
   componentWillMount() {
-    let userAud = getUserAud();
-    let userData = { aud: userAud };
+    let userSub = getUserSub();
+    let userData = { sub: userSub };
     this.setState({ user: userData });
     this.setState({ loggedIn: true });
   }
@@ -121,6 +121,5 @@ class SavedPlaces extends Component {
 }
 
 export default SavedPlaces;
-
 
 

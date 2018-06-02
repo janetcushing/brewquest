@@ -6,7 +6,7 @@ module.exports = {
         db.Notes
             .find({
                 brewery_id: req.query.id,
-                aud: req.query.aud
+                sub: req.query.sub
             })
             .sort({
                 date: -1
