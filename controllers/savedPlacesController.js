@@ -3,12 +3,18 @@ const db = require("../models");
 // Defining methods for the savedPlacesController
 module.exports = {
   findAll: function(req, res) {
+    console.log(`im in savedPlacesController.findAll - here is req`)
+    console.log(req);
     db.Breweries
-    // .find({sub: req.query.sub})
-      .find()
+    .find({sub: req.params.sub})
+      // .find()
       .sort({ brewery_name: -1 })
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .then(dbModel => {res.json(dbModel)})
+      .catch(err => {
+        console.log(`savedPlacesController.findAll has an error:`);
+        console.log(err);
+        res.status(422).json(err)
+      });
   },
   findById: function(req, res) {
     db.Breweries
