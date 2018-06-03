@@ -142,7 +142,10 @@ class Search extends Component {
     this.setState({
       result: holdResult
     });
-    const loc = this.state.searchLocationDetails.lat + ',' + this.state.searchLocationDetails.lng;
+    let loc = { lat: this.state.searchLocationDetails.lat,
+      lng: this.state.searchLocationDetails.lng,
+      sub: this.state.user.sub
+    };
     API.savePlace(this.state.result[details_key])
       .then(res =>
         this.searchApiPlaces(loc));
@@ -152,7 +155,10 @@ class Search extends Component {
     event.preventDefault();
     let breweryId = this.state.result[details_key].brewery_id;
     let sub = this.state.user.sub;
-    const loc = this.state.searchLocationDetails.lat + ',' + this.state.searchLocationDetails.lng;
+    const loc = { lat: this.state.searchLocationDetails.lat,
+      lng: this.state.searchLocationDetails.lng,
+      sub: this.state.user.sub
+    };
     API.deleteSavedPlaceByBreweryId(breweryId, sub)
       .then(res => {
         this.searchApiPlaces(loc);
