@@ -84,6 +84,8 @@ module.exports = {
     const getPlacesHeaderData = (req, res) => {
       var headerPromise = new Promise(function (resolve, reject) {
         const locn = `${req.query.lat},${req.query.lng}`;
+        console.log(`locn`);
+        console.log(locn);
         const sub = req.query.sub;
         console.log(BASEURL + APIKEY + LOCATION + locn + RANKBY + KEYWORD);
         rp(BASEURL + APIKEY + LOCATION + locn + RANKBY + KEYWORD)
