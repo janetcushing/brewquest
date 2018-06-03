@@ -45,13 +45,12 @@ module.exports = {
     // send the data to the client
     //----------------------------------------------------------
     getApiData: (req, res) => {
-      let locn = req.params.location;
       //second step, call the google places api, which in turn calls the google
       //places detail api (step3) and the database(step4) 
       holdplacesBody.length = 0;
       holdDetailBody.length = 0;
       holdDbBody.length = 0;
-      getPlacesHeaderData(locn, res)
+      getPlacesHeaderData(req, res)
         .then(function (result) {
           //step 5 and 6, prepare the data and send it to the client
           prepareForClient(result)
@@ -82,8 +81,10 @@ module.exports = {
     // the database to get the saved boolean which tells if the
     // place has previously been saved
     //----------------------------------------------------------
-    const getPlacesHeaderData = (locn, res) => {
+    const getPlacesHeaderData = (req, res) => {
       var headerPromise = new Promise(function (resolve, reject) {
+        const locn = `${req.query.lat},${req.query.lng}`;
+        const sub = req.query.sub;
         console.log(BASEURL + APIKEY + LOCATION + locn + RANKBY + KEYWORD);
         rp(BASEURL + APIKEY + LOCATION + locn + RANKBY + KEYWORD)
           .then(response => JSON.parse(response))
@@ -95,12 +96,14 @@ module.exports = {
             }
             holdplacesBody = body.results;
             // call the details api and make a call to the database to get more data
-            getPlacesDetailData(body, res)
+            getPlacesDetailData(body, sub)
               .then(detailBody => {
-                getPlacesfromDatabase(detailBody, res)
+                getPlacesfromDatabase(detailBody, sub)
                   .then(dbBody => {
                     let result = mergeByKey("place_id", holdplacesBody, holdDetailBody, holdDbBody);
-                    resolve(result);
+                    console.log(`result[0].sub about to resolve`)
+                    console.log(result[0].sub);
+                    resolve(result); 
                   }).catch(error => {
                     console.log("Error returned from dbPromise");
                     console.log(error);
@@ -129,7 +132,7 @@ module.exports = {
     // call the google places detail api.  You have to call the 
     // detail api once for each of the places returned by the header call
     //----------------------------------------------------------
-    const getPlacesDetailData = (body) => {
+    const getPlacesDetailData = (body, res) => {
       var detailPromise = new Promise(function (resolve, reject) {
         for (let ii = 0; ii < body.results.length; ii++) {
           let place = "&place_id=" + body.results[ii].place_id;
@@ -159,24 +162,31 @@ module.exports = {
     // call the database to check if the place has been  
     // previously saved
     //----------------------------------------------------------
-    const getPlacesfromDatabase = (detailBody, res) => {
+    const getPlacesfromDatabase = (detailBody, sub) => {
       var dbPromise = new Promise(function (resolve, reject) {
+        console.log(`in getPlacesfromDatabase`);
+        console.log(`sub11: ${sub}`);
         for (let iii = 0; iii < detailBody.length; iii++) {
           db.Breweries
-            .find().where('place_id').equals(detailBody[iii].place_id)
+          .find( { $and: [ { place_id: { $eq: detailBody[iii].place_id } }, 
+            { sub: { $eq: sub } } ] } )
             .then(dbModel => {
-              if (dbModel[0]) {
+              console.log(`aboutt o dump dbModel`);
+              console.log(dbModel);
+              if (dbModel[0]) {   
                 holdDbBody.push({
                   "place_id": detailBody[iii].place_id,
                   "saved": true,
-                  "sub": detailBody[iii].sub 
+                  "sub": sub 
                 });
+                console.log(`sub1: ${holdDbBody.sub}`);
               } else {
                 holdDbBody.push({
                   "place_id": detailBody[iii].place_id,
                   "saved": false,
-                  "sub": detailBody[iii].sub 
+                  "sub": sub 
                 });
+                console.log(`sub2: ${holdDbBody.sub}`);
               }
               if (holdDbBody.length === (detailBody.length)) {
                 resolve(holdDbBody);
@@ -198,6 +208,8 @@ module.exports = {
     // reduce the data to only the fields we are using in the client  
     //----------------------------------------------------------
     const prepareForClient = (result) => {
+      console.log(`in prepareForClient :`)
+      console.log(result[0].sub);
       var preparePromise = new Promise(function (resolve, reject) {
         let placeDetails = result.map((element, i) => {
           let open_now = false;
@@ -214,7 +226,6 @@ module.exports = {
           }
           let details = {
             "details_key": i,
-            "sub": element.sub,
             "brewery_id": element.id,
             "brewery_name": element.name,
             "icon": element.icon,
@@ -232,8 +243,9 @@ module.exports = {
             "open_now": open_now,
             "photos": element.photos,
             "reviews": reviews,
-            "weekday_text": weekday_text,
-            "url": element.url
+            "sub": element.sub, 
+            "url": element.url,
+            "weekday_text": weekday_text
           }
           return details;
         })

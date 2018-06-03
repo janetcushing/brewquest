@@ -42,7 +42,14 @@ export default {
   },
   // get data from the google places api
   getApiPlaces: function (query) {
-    return axios.get("/api/apiplaces/" + query)
+    console.log('im in getApiPlaces')
+    return axios.get("/api/apiplaces/", {
+      params: {
+        lat: query.lat,
+        lng: query.lng,
+        sub: query.sub
+      }
+    })
   },
   // Saves a user to the UserStore database
   saveUser: function (userData) {
@@ -54,16 +61,16 @@ export default {
     console.log(sub);
     return axios.get("/api/user/" + sub);
   },
-    // Updates a user in the UserStore database
-    updateUser: function (sub, loggedIn) {
-      return axios.put("/api/user/" + sub, loggedIn);
-    },
- // Saves a note to the Notes database
+  // Updates a user in the UserStore database
+  updateUser: function (sub, loggedIn) {
+    return axios.put("/api/user/" + sub, loggedIn);
+  },
+  // Saves a note to the Notes database
   saveNote: function (savedNoteData) {
     console.log(savedNoteData);
     return axios.post("/api/savednotes", savedNoteData);
   },
-// Deletes a note to the Notes database
+  // Deletes a note to the Notes database
   deleteSavedNote: function (noteId) {
     return axios.delete("/api/savednotes/", {
       params: {
@@ -71,8 +78,10 @@ export default {
       }
     });
   },
- // retrieves notes from the Notes database
+  // retrieves notes from the Notes database
   getSavedNotes: function (noteData) {
+    console.log('im in getSavedNotes - noteData');
+    console.log(noteData);
     return axios.get("/api/savednotes", {
       params: {
         id: noteData.brewery_id,
@@ -80,12 +89,12 @@ export default {
       }
     });
   },
-// Saves a review to the Reviews database
+  // Saves a review to the Reviews database
   saveReview: function (savedReviewData) {
     console.log(savedReviewData);
     return axios.post("/api/savedreviews", savedReviewData);
   },
-// retrieves reviews from the Reviews database
+  // retrieves reviews from the Reviews database
   getSavedReviews: function (reviewData) {
     return axios.get("/api/savedreviews", {
       params: {

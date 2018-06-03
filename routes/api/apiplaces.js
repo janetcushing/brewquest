@@ -7,7 +7,7 @@ const apiController = require("../../controllers/apiController.js");
 //-----------------------------------------------------------------------------
 // get brewery info from google places api based on zip code or city - state
 //-----------------------------------------------------------------------------
-router.route("/:location")
+router.route("/")
 .get(apiController.getApiData);
 
 //--------------------------------------
