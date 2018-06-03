@@ -52,7 +52,7 @@ const ResultsCard = props =>
                                             className="save-button" />
                                         :
                                         <RaisedButton
-                                            onClick={(event) => props.handlePlacesSave(event, result.details_key, props.sub)}
+                                            onClick={(event) => props.handlePlacesSave(event, result.details_key)}
                                             value={result.details_key}
                                             label="Save to my list"
                                             className="save-button"

@@ -31,7 +31,6 @@ class SavedPlaces extends Component {
   }
 
   loadSavedPlaces = (sub) => {
-
     API.getSavedPlaces(sub)
       .then(res =>
         this.setState({ results: res.data })
@@ -39,21 +38,21 @@ class SavedPlaces extends Component {
       .catch(err => console.log(err));
   };
 
-  deletePlace = id => {
+  deletePlace = (id) => {
     API.deleteSavedPlace(id)
-      .then(res => this.loadSavedPlaces())
+      .then(res => this.loadSavedPlaces(this.state.user.sub))
       .catch(err => console.log(err));
   };
 
   checkBeenThere = id => {
     API.beenToPlace(id)
-      .then(res => this.loadSavedPlaces())
+      .then(res => this.loadSavedPlaces(this.state.user.sub))
       .catch(err => console.log(err));
   };
 
   unCheckBeenThere = id => {
     API.haveNotBeenToPlace(id)
-      .then(res => this.loadSavedPlaces())
+      .then(res => this.loadSavedPlaces(this.state.user.sub))
       .catch(err => console.log(err));
   };
 

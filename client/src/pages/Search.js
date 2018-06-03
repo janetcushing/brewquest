@@ -34,6 +34,8 @@ class Search extends Component {
         loggedIn: this.props.location.state.loggedIn
       });
     }
+    console.log(`search user:`);
+    console.log(this.state.user);
   }
 
   componentDidMount() {
@@ -52,7 +54,7 @@ class Search extends Component {
 
   searchApiPlaces = query => {
     console.log(`IN searchApiPlaces`);
-    console.log(`query = ${query}`);
+    console.log(`query = ${JSON.stringify(query)}`);
     clearResults();
     console.log('about to getApiPlaces');
     API.getApiPlaces(query)
@@ -113,7 +115,10 @@ class Search extends Component {
             },
             searchLocation: res.data.locn.extra.neighborhood
           });
-          let loc = `${res.data.locn.latitude},${res.data.locn.longitude}`;
+          let loc = { lat: res.data.locn.latitude,
+            lng: res.data.locn.longitude,
+            sub: this.state.user.sub
+          };
           setSearchLocationDetails(loc);
           console.log(this.state.searchLocationDetails);
           console.log(`searchLocation:  ${this.state.searchLocation}`);
@@ -146,11 +151,13 @@ class Search extends Component {
   };
 
 
-  handlePlacesSave = (event, details_key, sub) => {
+  handlePlacesSave = (event, details_key) => {
     event.preventDefault();
+    console.log(`in handlePlacesSave`)
+    console.log(this.state.user.sub);
     let holdResult = this.state.result;
     holdResult[details_key].saved = true;
-    holdResult[details_key].sub = sub;
+    holdResult[details_key].sub = this.state.user.sub;
     console.log( 'holdResult[details_key]');
     console.log(holdResult[details_key]);
     this.setState({
@@ -165,8 +172,9 @@ class Search extends Component {
   handlePlacesDelete = (event, details_key) => {
     event.preventDefault();
     let breweryId = this.state.result[details_key].brewery_id;
+    let sub = this.state.user.sub;
     const loc = this.state.searchLocationDetails.lat + ',' + this.state.searchLocationDetails.lng;
-    API.deleteSavedPlaceByBreweryId(breweryId)
+    API.deleteSavedPlaceByBreweryId(breweryId, sub)
       .then(res => {
         this.searchApiPlaces(loc);
       });
@@ -186,7 +194,7 @@ class Search extends Component {
                 searchLocation={this.state.searchLocation}
                 getUserLocation={this.getUserLocation}
               /> 
-               {(this.state.isSearching)? <CircularProgress size={60} thickness={7} />:<div></div>}
+               {(this.state.isSearching)? <CircularProgress size={50} thickness={7} />:<div></div>}
 
             </Col>
           </Row>
