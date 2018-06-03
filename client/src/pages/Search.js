@@ -34,8 +34,6 @@ class Search extends Component {
         loggedIn: this.props.location.state.loggedIn
       });
     }
-    console.log(`search user:`);
-    console.log(this.state.user);
   }
 
   componentDidMount() {
@@ -44,7 +42,6 @@ class Search extends Component {
     });
     if (this.props.location.state) {
       if (this.props.location.state.searchLocation) {
-        console.log('about to geocodeSearchCriteria');
         this.geocodeSearchCriteria(this.props.location.state.searchLocation);
       }
     }
@@ -53,10 +50,7 @@ class Search extends Component {
 
 
   searchApiPlaces = query => {
-    console.log(`IN searchApiPlaces`);
-    console.log(`query = ${JSON.stringify(query)}`);
     clearResults();
-    console.log('about to getApiPlaces');
     API.getApiPlaces(query)
       .then(res => {
         
@@ -86,10 +80,7 @@ class Search extends Component {
   };
 
   showPosition = position => {
-    console.log("Latitude: " + position.coords.latitude +
-      " Longitude: " + position.coords.longitude);
     let loc = position.coords.latitude + ',' + position.coords.longitude;
-    console.log(position);
     this.geocodeSearchCriteria(loc);
     this.setState({ redirect: true, isSearching: true });
   }
@@ -98,13 +89,9 @@ class Search extends Component {
     clearSearchLocationDetails();
     API.reverseGeocode(loc)
       .then(res => {
-        console.log(res);
         if (res.data === "location error from geocoder.geocode") {
           alert("Please enter a valid location");
         } else {
-          console.log(res.data.locn.zipcode);
-          console.log(res.data.locn.latitude);
-          console.log(res.data.locn.longitude);
           this.setState({
             searchLocationDetails: {
               formattedAddress: res.data.locn.formattedAddress,
@@ -120,8 +107,6 @@ class Search extends Component {
             sub: this.state.user.sub
           };
           setSearchLocationDetails(loc);
-          console.log(this.state.searchLocationDetails);
-          console.log(`searchLocation:  ${this.state.searchLocation}`);
           this.searchApiPlaces(loc);
         }
       });
@@ -143,8 +128,6 @@ class Search extends Component {
     if (!this.state.searchLocation) {
       alert("Please add search criteria");
     } else {
-      // let loc = `${this.state.searchLocationDetails.lat},${this.state.searchLocationDetails.lng}`;
-      // this.setState({ searchLocationDetails: "", results: [] })
       this.setState({ results: [], isSearching: true })
       this.geocodeSearchCriteria(this.state.searchLocation);
     }
@@ -153,13 +136,9 @@ class Search extends Component {
 
   handlePlacesSave = (event, details_key) => {
     event.preventDefault();
-    console.log(`in handlePlacesSave`)
-    console.log(this.state.user.sub);
     let holdResult = this.state.result;
     holdResult[details_key].saved = true;
     holdResult[details_key].sub = this.state.user.sub;
-    console.log( 'holdResult[details_key]');
-    console.log(holdResult[details_key]);
     this.setState({
       result: holdResult
     });
