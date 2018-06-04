@@ -106,7 +106,10 @@ class Search extends Component {
             lng: res.data.locn.longitude,
             sub: this.state.user.sub
           };
-          setSearchLocationDetails(loc);
+          console.log(JSON.stringify(loc));
+          let search = `${loc.lat},${loc.lng}`;
+          console.log(search);
+          setSearchLocationDetails(search);
           this.searchApiPlaces(loc);
         }
       });

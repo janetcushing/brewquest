@@ -62,9 +62,13 @@ class ShowMap extends Component {
  
   render() {
     const results = getResults();
-    const search = (getSearchLocationDetails()).split(',');
+    const search = getSearchLocationDetails().split(',');
     const clat = parseFloat(search[0]);
     const clng = parseFloat(search[1]);
+    console.log(`lat long`);
+    console.log()
+    console.log(clat);
+    console.log(clng);
     return (
       <div>
         <Map
