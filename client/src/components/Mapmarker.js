@@ -10,8 +10,6 @@ class Mapmarker extends Component {
         this.state = {
             windowPosition: null
         };
-
-
     }
   
 
