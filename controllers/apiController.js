@@ -11,13 +11,14 @@ const db = require("../models");
 const mongojs = require("mongojs");
 const Breweries = require("../models/breweries.js");
 const mergeByKey = require("array-merge-by-key");
+const dotenv = require('dotenv').config();
 
 //=================================================
 // global variables
 //=================================================
 const BASEURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
 const DETAILURL = "https://maps.googleapis.com/maps/api/place/details/json?";
-const APIKEY = "key=AIzaSyCBumUHvERt5G6PSGrvs9MQHRbbHdS7BlQ";
+const APIKEY = 'key=' + process.env.GOOGLE_API_KEY + '';
 const RANKBY = "&rankby=distance"
 const KEYWORD = "&keyword=brewery"
 const FORMAT = "&format=json";
